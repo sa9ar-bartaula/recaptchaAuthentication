@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %} User Dashboard Page {% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="d-flex justify-content-between">
+            <h3>Dashboard</h3>
+            <a type="button" class="btn btn-primary px-5" href="{% url 'logout_url' %}">Logout</a>
+        </div>
+        <div class="col-6 mx-auto">
+            
+            {% if not profile_complete %}
+            <h4>WELCOME '{{user}}'</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h6 class="mb-3">Please complete your profile.</h6>
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <label class="mb-1">Birth Date*</label>
+                                <input type="date" name="birthdate" class="form-control" required/>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="mb-1">Gender*</label>
+                                <select class="form-select" name="gender" required>
+                                    <option value="">----------</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="others">Others</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="mb-1">Image</label>
+                                <input type="file" name="user_image" class="form-control"/>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="mb-1">Bio</label>
+                                <textarea type="text" name="bio" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary w-50 mx-auto">Continue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <img class="card-img-top img-fluid" src="{{profile.image}}" alt="image">
+                <div class="card-body">
+                    <h4 class="card-title">{{user}} ({{profile.gender}})</h4>
+                    <h6>BirthDate: {{profile.birth_date}}</h6>
+                    <p class="card-text">
+                        {{profile.bio}}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock content %}
+    
+    

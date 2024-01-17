@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} reCAPTCHA | Index {% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <a type="button" class="btn btn-primary mb-2 w-100" href="{% url 'login_url' %}">Login</a>
+                        </div>
+                        <div class="col-2">
+                            <div class="mt-1"><h5 class="text-center">OR</h5></div>
+                        </div>
+                        <div class="col-5">
+                            <a type="button" class="btn btn-primary mb-2 w-100" href="{% url 'register_url' %}">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+    
+    
